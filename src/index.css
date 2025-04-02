@@ -1,0 +1,120 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 7%;
+    --foreground: 0 0% 88%;
+
+    --card: 0 0% 10%;
+    --card-foreground: 0 0% 88%;
+
+    --popover: 0 0% 10%;
+    --popover-foreground: 0 0% 88%;
+
+    --primary: 196 100% 50%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 154 100% 45%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 65%;
+
+    --accent: 0 0% 15%;
+    --accent-foreground: 0 0% 88%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 16.5%;
+    --input: 0 0% 16.5%;
+    --ring: 196 100% 45%;
+
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-security-background text-security-foreground;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-security-darker;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-security-border rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-security-primary bg-opacity-50;
+  }
+}
+
+@layer components {
+  .security-card {
+    @apply bg-security-dark border border-security-border rounded-lg shadow-lg overflow-hidden;
+  }
+  
+  .security-input {
+    @apply bg-security-darker border border-security-border rounded-md text-security-foreground p-2 w-full focus:border-security-primary focus:ring-1 focus:ring-security-primary;
+  }
+  
+  .security-btn-primary {
+    @apply bg-security-primary text-white font-medium rounded-md px-4 py-2 hover:bg-opacity-90 transition-colors;
+  }
+  
+  .security-btn-secondary {
+    @apply bg-security-secondary text-white font-medium rounded-md px-4 py-2 hover:bg-opacity-90 transition-colors;
+  }
+  
+  .security-btn-danger {
+    @apply bg-security-danger text-white font-medium rounded-md px-4 py-2 hover:bg-opacity-90 transition-colors;
+  }
+  
+  .terminal-text {
+    @apply font-mono text-sm;
+  }
+  
+  .glow {
+    @apply animate-pulse-glow;
+  }
+  
+  .fuzzer-section {
+    @apply security-card p-4 mb-4;
+  }
+  
+  .result-item {
+    @apply border-b border-security-border last:border-b-0 py-2 animate-fade-in;
+  }
+  
+  .result-success {
+    @apply text-security-success;
+  }
+  
+  .result-warning {
+    @apply text-security-warning;
+  }
+  
+  .result-danger {
+    @apply text-security-danger;
+  }
+  
+  .result-info {
+    @apply text-security-info;
+  }
+}

@@ -1,6 +1,5 @@
 import { FuzzingResult, ExportFormat } from "@/types/results";
 import { jsPDF } from "jspdf";
-import { stringify } from "csv-stringify/sync";
 import { saveAs } from "file-saver";
 
 export const exportResults = async (
@@ -48,13 +47,11 @@ const exportToCsv = (results: FuzzingResult[]) => {
     ])
   );
 
-  const csvContent = stringify([headers, ...rows], {
-    header: false,
-    columns: headers.reduce(
-      (acc, header) => ({ ...acc, [header]: header }),
-      {}
-    ),
-  });
+  // Create CSV content manually
+  const csvContent = [
+    headers.join(","),
+    ...rows.map((row) => row.map((cell) => `"${cell}"`).join(",")),
+  ].join("\n");
 
   const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8" });
   saveAs(blob, `fuzzify-results-${new Date().toISOString()}.csv`);
